@@ -3,11 +3,11 @@
 import { useState } from "react";
 import { useRouter } from "next/navigation";
 
-const WEB3FORMS_URL = "https://api.web3forms.com/submit";
+export const WEB3FORMS_URL = "https://api.web3forms.com/submit";
 
-const ACCESS_KEY = "2cb92532-99dc-4714-8974-83094ccc72d0";
+export const ACCESS_KEY = "2cb92532-99dc-4714-8974-83094ccc72d0";
 
-const inputCls =
+export const inputCls =
   "w-full rounded-[3px] border border-[#c9c9c9] bg-white px-4 py-1 text-p4 outline-none transition-colors placeholder:text-[#8a8a8a] focus:border-p2 focus:ring-2 focus:ring-p2/20";
 
 export default function ContactForm() {

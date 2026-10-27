@@ -95,7 +95,14 @@ h1, h2, h3, h4, h5, h6 {
 .rich-text > :first-child { margin-top: 0; }
 
 /* Main headings get a short teal accent line underneath */
+.rich-text h1 {
+  color: var(--palette-1);
+  font-size: clamp(28px, 3.4vw, 40px);
+  font-weight: 800;
+  line-height: 1.25;
+}
 .rich-text h2 { font-size: clamp(26px, 3vw, 34px); font-weight: 800; }
+.rich-text h1::after,
 .rich-text h2::after,
 .rich-text h4::after {
   content: "";
@@ -131,6 +138,9 @@ h1, h2, h3, h4, h5, h6 {
   text-underline-offset: 4px;
   transition: color 0.2s, text-decoration-color 0.2s;
 }
+/* Phone and email links stay plain, without the underline */
+.rich-text a[href^="tel:"],
+.rich-text a[href^="mailto:"] { text-decoration: none; }
 .rich-text a:not(.btn) strong,
 .rich-text a:not(.btn) b { color: inherit; }
 .rich-text a:not(.btn):hover {

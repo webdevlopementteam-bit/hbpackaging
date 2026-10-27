@@ -23,7 +23,7 @@ export default function ProductsPage() {
       <JsonLd data={breadcrumbSchema("Products", "/products/")} />
       <JsonLd data={productCategoryListSchema(PRODUCT_GRID)} />
       {faqLd && <JsonLd data={faqLd} />}
-      <PageHeader title="Products" />
+      <PageHeader title="Products" as="p" />
 
       <section className="py-[50px] px-5 lg:px-14">
      

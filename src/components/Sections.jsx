@@ -84,8 +84,40 @@ const FEATURES = [
   { icon: "headphonesAlt", title: "24/7Support", text: "Always here for your needs.", box: "bg-p2 text-white", sub: "text-p5", circle: "bg-p1 text-white" },
 ];
 
+function WhyChooseImage() {
+  return (
+    <div className="anim-fade relative mx-auto aspect-square w-full max-w-[460px]">
+      <Image
+        src="/home/why-choose.png"
+        alt="Blister packaging trays by HB Packaging"
+        fill
+        sizes="(max-width: 1024px) 90vw, 460px"
+        className="object-contain"
+      />
+    </div>
+  );
+}
+
+function FeatureList({ features }) {
+  return (
+    <div className="space-y-5">
+      {features.map((f) => (
+        <div key={f.title} className={`anim-fade-up flex items-center gap-5 rounded-[90px] p-[5px] ${f.box}`}>
+          <span className={`grid h-[80px] w-[80px] shrink-0 place-items-center rounded-full ${f.circle}`}>
+            <Icon name={f.icon} size="35" />
+          </span>
+          <div className="py-2 pr-3">
+            <h5 className="text-lg font-bold text-inherit lg:text-xl">{f.title}</h5>
+            <p className={`mt-0.5 text-[14px] leading-[1.8] ${f.sub}`}>{f.text}</p>
+          </div>
+        </div>
+      ))}
+    </div>
+  );
+}
+
 /* Stats row + "Why Choose Us" (shared by Home and About) */
-export function WhyChooseUs({ text, learnMoreHref = "/about-us/" }) {
+export function WhyChooseUs({ text, title, features = FEATURES, learnMoreHref = "/about-us/" }) {
   return (
     <section className="bg-white pt-[50px]">
       <Container>
@@ -105,42 +137,41 @@ export function WhyChooseUs({ text, learnMoreHref = "/about-us/" }) {
           <div className="divider-tribal" />
         </div>
 
-        <div className="grid items-center gap-8 pb-[50px] lg:grid-cols-[24%_1fr_35%]">
-          <div className="anim-fade-up">
-            <h2 className="text-[32px] font-extrabold leading-tight text-p1 md:text-[40px]">
-              Why
-              <br />
-              Choose Us
-            </h2>
-            <p className="my-5">{text}</p>
-            <Link href={learnMoreHref} className="btn">
-              <Icon name="arrowCircleRight" />
-              Learn More
-            </Link>
+        {title ? (
+          /* Custom title: heading block on top, then features split left/right around the image */
+          <div className="pb-[50px]">
+            <div className="anim-fade-up mx-auto max-w-[820px] text-center">
+              <h2 className="text-[28px] font-extrabold leading-tight text-p1 md:text-[38px]">{title}</h2>
+              <p className="my-5">{text}</p>
+              <Link href={learnMoreHref} className="btn">
+                <Icon name="arrowCircleRight" />
+                Learn More
+              </Link>
+            </div>
+            <div className="mt-10 grid items-center gap-8 lg:grid-cols-[1fr_minmax(0,380px)_1fr]">
+              <FeatureList features={features.slice(0, Math.ceil(features.length / 2))} />
+              <WhyChooseImage />
+              <FeatureList features={features.slice(Math.ceil(features.length / 2))} />
+            </div>
           </div>
-          <div className="anim-fade relative mx-auto aspect-square w-full max-w-[460px]">
-            <Image
-              src="/home/why-choose.png"
-              alt="Blister packaging trays by HB Packaging"
-              fill
-              sizes="(max-width: 1024px) 90vw, 460px"
-              className="object-contain"
-            />
+        ) : (
+          <div className="grid items-center gap-8 pb-[50px] lg:grid-cols-[24%_1fr_35%]">
+            <div className="anim-fade-up">
+              <h2 className="text-[32px] font-extrabold leading-tight text-p1 md:text-[40px]">
+                Why
+                <br />
+                Choose Us
+              </h2>
+              <p className="my-5">{text}</p>
+              <Link href={learnMoreHref} className="btn">
+                <Icon name="arrowCircleRight" />
+                Learn More
+              </Link>
+            </div>
+            <WhyChooseImage />
+            <FeatureList features={features} />
           </div>
-          <div className="space-y-5">
-            {FEATURES.map((f) => (
-              <div key={f.title} className={`anim-fade-up flex items-center gap-5 rounded-[90px] p-[5px] ${f.box}`}>
-                <span className={`grid h-[80px] w-[80px] shrink-0 place-items-center rounded-full ${f.circle}`}>
-                  <Icon name={f.icon} size="35" />
-                </span>
-                <div className="py-2 pr-3">
-                  <h5 className="text-lg font-bold text-inherit lg:text-xl">{f.title}</h5>
-                  <p className={`mt-0.5 text-[14px] leading-[1.8] ${f.sub}`}>{f.text}</p>
-                </div>
-              </div>
-            ))}
-          </div>
-        </div>
+        )}
       </Container>
     </section>
   );

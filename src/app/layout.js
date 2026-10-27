@@ -2,6 +2,7 @@ import "./globals.css";
 import Header from "@/components/Header";
 import Footer from "@/components/Footer";
 import FloatingChat from "@/components/FloatingChat";
+import PopupForm from "@/components/PopupForm";
 import { JsonLd } from "@/components/Sections";
 import { SITE_NAME, SITE_URL } from "@/lib/site";
 import { organizationSchema, websiteSchema } from "@/lib/schema";
@@ -36,6 +37,7 @@ export default function RootLayout({ children }) {
         </main>
         <Footer />
         <FloatingChat />
+        <PopupForm />
         <JsonLd data={organizationSchema()} />
         <JsonLd data={websiteSchema()} />
       </body>
